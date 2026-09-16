@@ -1,0 +1,33 @@
+[project]
+name = "citibike-pipeline"
+version = "0.1.0"
+description = "Citi Bike End-to-End Pipeline"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "dagster>=1.13.22",
+    "polars>=1.44.2",
+    "python-dotenv>=1.2.3",
+]
+
+[dependency-groups]
+dev = [
+    "dagster-dg-cli",
+    "dagster-webserver",
+]
+
+[tool.dg]
+directory_type = "project"
+
+[tool.dg.project]
+root_module = "citibike_pipeline.orchestration"
+registry_modules = [
+    "citibike_pipeline.orchestration.components.*",
+]
+
+[project.scripts]
+citibike-pipeline = "citibike_pipeline:main"
+
+[build-system]
+requires = ["uv_build>=0.12.11,<0.13.0"]
+build-backend = "uv_build"
