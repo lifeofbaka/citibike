@@ -5,16 +5,31 @@ description = "Citi Bike End-to-End Pipeline"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "dagster>=1.13.22",
-    "polars>=1.44.2",
     "python-dotenv>=1.2.3",
 ]
 
 [dependency-groups]
-dev = [
+ingestion = [
+    "requests",
+]
+transform = [
+    "duckdb",
+    "dbt-core",
+    "dbt-duckdb",
+]
+orchestration = [
+    "dagster>=1.13.22",
     "dagster-dg-cli",
     "dagster-webserver",
 ]
+dev = [
+    "pytest",
+    "ruff",
+    "polars>=1.44.2",
+]
+
+[tool.uv]
+default-groups = ["ingestion", "transform", "orchestration", "dev"]
 
 [tool.dg]
 directory_type = "project"
