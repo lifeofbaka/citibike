@@ -1,6 +1,8 @@
-import os 
+import os
 from pathlib import Path
+
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -17,7 +19,8 @@ def get_data_root() -> Path:
         raise ValueError("DATA_ROOT environment variable is not set.")
     return Path(data_root)
 
-def ensure_data_paths_exist(data_root: Path | None = None, storage_layers: tuple[str,...] = storage_layers) -> dict[str, Path]:
+def ensure_data_paths_exist(data_root: Path | None = None, 
+storage_layers: tuple[str,...] = storage_layers) -> dict[str, Path]:
     """
     Ensures that the data paths for the specified storage layers exist. 
     If they don't exist, they will be created.

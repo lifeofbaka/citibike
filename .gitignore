@@ -11,3 +11,10 @@ wheels/
 
 # Secrets / local config
 .env
+
+# Local scratch — not the real README
+README_DRAFT.md
+
+# Personal working references — deliberately untracked
+citibike-project-plan.md
+test.py

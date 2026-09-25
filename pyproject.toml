@@ -17,28 +17,47 @@ transform = [
     "dbt-core",
     "dbt-duckdb",
 ]
-orchestration = [
-    "dagster>=1.13.22",
-    "dagster-dg-cli",
-    "dagster-webserver",
-]
 dev = [
     "pytest",
     "ruff",
     "polars>=1.44.2",
 ]
+orchestration = [
+    "apache-airflow==3.3.2",
+]
 
 [tool.uv]
 default-groups = ["ingestion", "transform", "orchestration", "dev"]
-
-[tool.dg]
-directory_type = "project"
-
-[tool.dg.project]
-root_module = "citibike_pipeline.orchestration"
-registry_modules = [
-    "citibike_pipeline.orchestration.components.*",
+# Pins from Airflow's tested constraints (constraints-3.3.2/constraints-3.14.txt) for packages
+# uv would otherwise resolve differently. pathspec (1.1.1) and more-itertools (11.1.0) are
+# deliberately NOT pinned: dbt-core 1.x caps them lower. Update when bumping Airflow.
+constraint-dependencies = [
+    "cachetools==7.1.8",
+    "fsspec==2026.7.0",
+    "googleapis-common-protos==1.75.3",
+    "greenlet==3.5.5",
+    "grpcio==1.83.1",
+    "importlib-metadata==8.9.0",
+    "mako==1.4.1",
+    "pygtrie==2.6.1",
+    "pyjwt==2.14.0",
+    "sqlalchemy==2.0.52",
+    "starlette==1.6.0",
+    "tzdata==2026.4",
+    "uvicorn==0.52.4",
+    "watchfiles==1.2.0",
+    "websockets==16.1.1",
 ]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [project.scripts]
 citibike-pipeline = "citibike_pipeline:main"
