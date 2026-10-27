@@ -5,6 +5,7 @@ description = "Citi Bike End-to-End Pipeline"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "graphviz>=0.21",
     "python-dotenv>=1.2.3",
 ]
 

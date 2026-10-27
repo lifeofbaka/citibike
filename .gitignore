@@ -12,9 +12,19 @@ wheels/
 # Secrets / local config
 .env
 
-# Local scratch — not the real README
-README_DRAFT.md
+
+# Airflow runtime files (AIRFLOW_HOME=airflow/) — only airflow/dags/ is committed
+airflow.cfg
+airflow.db*
+airflow/logs/
+airflow/simple_auth_manager_passwords.json.generated
+airflow/webserver_config.py
+airflow/standalone_admin_password.txt
 
 # Personal working references — deliberately untracked
 citibike-project-plan.md
 test.py
+hello_world.py
+
+# Local scratch — not the real README
+README_DRAFT.md
